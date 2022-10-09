@@ -1,5 +1,6 @@
 package com.example.fileuploading.pdffileuploading.utility;
 
+import com.example.fileuploading.pdffileuploading.interfaces.LogAspect;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,20 +12,20 @@ import java.nio.file.StandardCopyOption;
 
 @Component
 public class FileUploadUtility {
- //   public final String upload_Dir = "C:\\Users\\Dell\\IdeaProjects\\pdf-file-uploading\\src\\main\\resources\\static\\assets\\pdf-files";
+    //   public final String upload_Dir = "C:\\Users\\Dell\\IdeaProjects\\pdf-file-uploading\\src\\main\\resources\\static\\assets\\pdf-files";
     public final String upload_Dir = new ClassPathResource("static/assets/pdf-files").getFile().getPath();
 
     public FileUploadUtility() throws IOException {
     }
 
     public boolean uploadFile(MultipartFile multiFile) {
+        checkingAspect();
         boolean fileUploaded = false;
         try {
         /*
             InputStream fis = multiFile.getInputStream();
             byte[] data = new byte[fis.available()];
             fis.read(data);
-
             FileOutputStream fos = new FileOutputStream(upload_Dir+ File.separator+multiFile.getOriginalFilename());
             fos.write(data);
             fos.close();
@@ -38,5 +39,9 @@ public class FileUploadUtility {
             e.printStackTrace();
         }
         return fileUploaded;
+    }
+    @LogAspect
+    public static void  checkingAspect(){
+        System.out.println("checking if aspects is working");
     }
 }

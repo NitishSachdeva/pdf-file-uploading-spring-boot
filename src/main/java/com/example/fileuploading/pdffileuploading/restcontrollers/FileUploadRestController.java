@@ -21,7 +21,7 @@ public class FileUploadRestController {
         System.out.println(file.getSize());
         System.out.println(file.getContentType());
         System.out.println(file.getName());
-        try {
+        //try {
             if (file.isEmpty())
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Please select a pdf file");
 
@@ -33,9 +33,9 @@ public class FileUploadRestController {
             if (pdfUploaded)
                return ResponseEntity.ok("file uploaded successfully");
                 //return ResponseEntity.ok(ServletUriComponentsBuilder.fromCurrentContextPath().path("/pdf-files/").path(file.getOriginalFilename()).toUriString());
-        }catch (Exception e){
+      /*  }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong!There is some error in upload the pdf file, please try again");
     }
